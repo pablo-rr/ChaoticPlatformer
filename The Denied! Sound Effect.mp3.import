@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dbwlaofnluytr"
+path="res://.godot/imported/The Denied! Sound Effect.mp3-ee090684747b1ba4c914a799bd0dcf8f.mp3str"
+
+[deps]
+
+source_file="res://The Denied! Sound Effect.mp3"
+dest_files=["res://.godot/imported/The Denied! Sound Effect.mp3-ee090684747b1ba4c914a799bd0dcf8f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

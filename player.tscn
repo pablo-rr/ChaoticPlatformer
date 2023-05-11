@@ -1,7 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://dmyxdykmbbh54"]
+[gd_scene load_steps=7 format=3 uid="uid://dmyxdykmbbh54"]
 
 [ext_resource type="Script" path="res://Components/Health.gd" id="1_p0pxh"]
 [ext_resource type="Script" path="res://Components/Stamina.gd" id="2_sd6cd"]
+[ext_resource type="Script" path="res://Components/Destroyer.gd" id="3_bphpd"]
+[ext_resource type="AudioStream" uid="uid://dbwlaofnluytr" path="res://The Denied! Sound Effect.mp3" id="4_1v6he"]
+[ext_resource type="Script" path="res://Components/HelloWorld.gd" id="4_qc8en"]
 
 [sub_resource type="GDScript" id="GDScript_s4ry6"]
 script/source = "extends Node2D
@@ -9,6 +12,7 @@ script/source = "extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$HelloWorld
 	pass
 
 
@@ -28,9 +32,12 @@ func _input(event: InputEvent) -> void:
 	if(event is InputEventKey and event.is_action_pressed(\"AddStamina\")):
 		$Stamina.recover_stamina(20)
 		print($Stamina.stamina)
+		
 	elif(event is InputEventKey and event.is_action_pressed(\"SubstractStamina\")):
 		$Stamina.drain_stamina(20)
 		print($Stamina.stamina)
+		
+	
 "
 
 [node name="Player" type="Node2D"]
@@ -42,3 +49,13 @@ script = ExtResource("1_p0pxh")
 [node name="Stamina" type="Node" parent="."]
 script = ExtResource("2_sd6cd")
 max_stamina = 150.0
+
+[node name="Destroyer" type="Node" parent="." node_paths=PackedStringArray("sound")]
+script = ExtResource("3_bphpd")
+sound = NodePath("../AudioStreamPlayer")
+
+[node name="HelloWorld" type="Node" parent="."]
+script = ExtResource("4_qc8en")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_1v6he")
