@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3 uid="uid://dmyxdykmbbh54"]
+
+[ext_resource type="Script" path="res://Components/Health.gd" id="1_p0pxh"]
+[ext_resource type="Script" path="res://Components/Stamina.gd" id="2_sd6cd"]
+
+[sub_resource type="GDScript" id="GDScript_s4ry6"]
+script/source = "extends Node2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+func _input(event: InputEvent) -> void:
+	if(event is InputEventKey and event.is_action_pressed(\"ui_accept\")) :
+		$Health.heal(25)
+		print($Health.health)
+	
+	elif(event is InputEventKey and event.is_action_pressed(\"ui_cancel\")) :
+		$Health.damage(25)
+		print($Health.health)
+	
+	if(event is InputEventKey and event.is_action_pressed(\"AddStamina\")):
+		$Stamina.recover_stamina(20)
+		print($Stamina.stamina)
+	elif(event is InputEventKey and event.is_action_pressed(\"SubstractStamina\")):
+		$Stamina.drain_stamina(20)
+		print($Stamina.stamina)
+"
+
+[node name="Player" type="Node2D"]
+script = SubResource("GDScript_s4ry6")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("1_p0pxh")
+
+[node name="Stamina" type="Node" parent="."]
+script = ExtResource("2_sd6cd")
+max_stamina = 150.0
